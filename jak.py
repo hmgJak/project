@@ -23,7 +23,7 @@ jak = commands.Bot(
 def clear_console():
   try:
     os.system('clear')
-  else:
+  except:
     os.system('cls')
 
 @jak.event
