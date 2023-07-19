@@ -50,7 +50,7 @@ async def status(ctx, status):
   try:
     await jak.change_presence(status=discord.Status.dnd(), activity=discord.Game(status))
   except Exception as e:
-    print({C.RED}e)
+    print(f"{C.RED}e")
 
 @jak.command()
 async def hack(ctx, user: discord.Member):
