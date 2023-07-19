@@ -12,7 +12,7 @@ import time
 import random
 
 token = input(f"{C.MAGENTA}[+] Token: ")
-prefix = input(f"{C.MAGENTA}[+] Prefix: "]
+prefix = input(f"{C.MAGENTA}[+] Prefix: ")
 jak = commands.Bot(
   intents=discord.Intents.all(),
   command_prefix=prefix,
