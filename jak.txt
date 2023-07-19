@@ -1,0 +1,85 @@
+import os
+os.system('pip uninstall discord')
+os.system('pip install discord.py==1.7.3')
+import discord.ext
+from discord.ext import commands
+import colorama
+from colorama import Fore as C
+import ipwhois
+import pypresence
+from pypresence import Presence
+import time
+import random
+
+token = input(f"{C.MAGENTA}[+] Token: ")
+prefix = input(f"{C.MAGENTA}[+] Prefix: "]
+jak = commands.Bot(
+  intents=discord.Intents.all(),
+  command_prefix=prefix,
+  case_sensetive=True,
+  self_bot=True
+)
+
+def clear_console():
+  try:
+    os.system('clear')
+  else:
+    os.system('cls')
+
+@jak.event
+async def on_connect():
+  clear_console()
+  print(f"""
+{C.MAGENTA}
+╱╱╭╮╱╱╭╮╱╱╭━━━╮╱╱╭╮╭━┳╮╱╱╱╱╭╮
+╱╱┃┃╱╱┃┃╱╱┃╭━╮┃╱╱┃┃┃╭┫┃╱╱╱╭╯╰╮
+╱╱┃┣━━┫┃╭╮┃╰━━┳━━┫┣╯╰┫╰━┳━┻╮╭╯
+╭╮┃┃╭╮┃╰╯╯╰━━╮┃┃━┫┣╮╭┫╭╮┃╭╮┃┃
+┃╰╯┃╭╮┃╭╮╮┃╰━╯┃┃━┫╰┫┃┃╰╯┃╰╯┃╰╮
+╰━━┻╯╰┻╯╰╯╰━━━┻━━┻━┻╯╰━━┻━━┻━╯
+
+========================================
+
+[+] Logged in as {jak.user}
+[+] Prefix is {prefix}
+[+] Code Made by Jak
+""")
+
+@jak.command()
+async def status(ctx, status):
+  try:
+    await jak.change_presence(status=discord.Status.dnd(), activity=discord.Game(status))
+  except Exception as e:
+    print({C.RED}e)
+
+@jak.command()
+async def hack(ctx, user: discord.Member):
+  message = await ctx.reply(f"```Breaking into discord mainframe...```")
+  time.sleep(0.4)
+  await message.edit("```Accessing Token Files....```")
+  time.sleep(0.2)
+  await message.edit(f"```Finding {user}'s file....```")
+  time.sleep(0.8)
+  await message.edit(f"```File Found!```")
+  msg = await ctx.send(f"```Searching {user}'s DM History!```")
+  time.sleep(0.2)
+  await msg.edit(f"```Reading VC Logs...```")
+  time.sleep(0.2)
+  await msg.edit("```Reading Group Chats and Server Messages...```")
+  time.sleep(0.4)
+  servers = ["PedoHub", "I like mine young", "Minecraft | Find the Minor For you!", "Under 6 Edating!", "Watch me jerk off", "hot grandma leaks"]
+  gc = ["How to Know If I Fucked My Grandma", "Is This CP?", "Jerk off with me", "ryan toy review leaks"]
+  messages = ["uwu zaddy... im ur slutty femboy"]
+  await ctx.send(f"""
+```{user} Exposed!```
+
+```
+[+] Largest Server Owned: {random.choice(servers)}
+[+] Largest Group Chat: {random.choice(gc)}
+[+] Most Active Server: {random.choice(servers)}
+[+] Most Active Group Chat: {random.choice(gc)}
+[+] Most Common Message Sent: {messages}
+```
+""")
+
+jak.run(token, bot=False)
